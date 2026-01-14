@@ -57,14 +57,22 @@ header nav {
 
 header nav ul {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1.2rem;
+    flex-wrap: nowrap;
+    gap: clamp(0.5rem, 2vw, 1.2rem);
     justify-content: flex-end;
     list-style: none;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
 
 header nav ul li {
-    font-size: clamp(1rem, 3vw, 1.4rem);
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
 
  header nav ul li a {
@@ -77,9 +85,23 @@ header nav ul li {
   margin-top: 12px; 
 }
 
+/* Оранжевая полоска при наведении (десктоп) */
 header nav ul li:not(.active) a:hover {
     border-bottom: 5px solid #D17338;
- }
+}
+
+/* На телефоне — при нажатии (активное состояние) */
+header nav ul li:not(.active) a:active,
+header nav ul li:not(.active) a:focus-visible,
+header nav ul li:not(.active) a:focus {
+    border-bottom: 5px solid #D17338;
+    outline: none; /* убираем синий фокус-рамку, если не нужна */
+}
+
+/* Чтобы эффект был заметнее и держался чуть дольше */
+header nav ul li a {
+    transition: border-bottom 0.2s ease;
+}
 
 .hero {
     padding: 20px 0;
