@@ -96,34 +96,68 @@ header nav ul li:not(.active) a:hover {
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    padding: 0 0.8rem;          /* добавь немного воздуха по бокам */
 }
 
 .build img {
     max-width: 100%;
     height: auto;
+    border-radius: 12px;        /* если хочешь чуть красивее */
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
 }
 
+/* Уже есть, но усиливаем */
 .build p {
-    text-align: center;
-    line-height: 170%;
-    font-size: 33px;
+    font-size: clamp(1rem, 3.8vw, 1.35rem);  /* ← уменьшили vw и max — меньше скачков */
+    line-height: 1.65;                        /* чуть больше воздуха, читаемость лучше */
     font-weight: 500;
-    margin: 30px 0;
+    margin: 1.2rem 0;
+    padding: 0 1.4rem;                        /* больше бокового воздуха — меньше причин для авто-зум */
+    max-width: 95%;
+    box-sizing: border-box;
+    hyphens: auto;                            /* ← опционально: переносы слов, чтобы строки были ровнее */
+    -webkit-hyphens: auto;
+    word-wrap: break-word;                    /* предотвращает вылезание длинных слов */
 }
 
-video {
-  display: block;
-  margin: 0 auto;
-  width: 60%;
-  height: 400px;
+/* Для мобильных — ещё строже */
+@media (max-width: 767px) {
+    .build p {
+        font-size: clamp(1rem, 4vw, 1.3rem);  /* max 1.3rem — не даёт раздуваться */
+        padding: 0 1.3rem;
+    }
 }
 
+/* Новый медиа-запрос специально для мобильных < 768px */
+@media (max-width: 768px) {
+    .build {
+        padding: 0 0.5rem;                         /* меньше боковых отступов у всей карточки */
+    }
+    
+    .build p {
+        padding: 0 1rem;                           /* но тексту оставляем комфортные отступы */
+        font-size: clamp(1rem, 4.2vw, 1.4rem);     /* ещё меньше верхний предел */
+        margin: 1.2rem 0;
+    }
+    
+    .video-box {
+        max-width: 100%;                           /* на всякий случай */
+    }
+    
+    video, iframe {
+        width: 100% !important;                    /* заставляем видео растягиваться на всю ширину */
+        height: auto;                              /* пропорции сохраняем */
+    }
+}
+
+/* Если видео не адаптируется (iframe от ютуба) */
 .video-box {
     position: relative;
-    padding-bottom: 56.25%;   /* 16:9 */
+    padding-bottom: 56.25%;   /* 16:9 — уже есть, хорошо */
     height: 0;
     overflow: hidden;
     max-width: 100%;
+    margin: 1rem auto;        /* ← добавь отступы сверху/снизу */
 }
 
 .video-box iframe {
@@ -134,5 +168,22 @@ video {
     height: 100%;
 }
 
+.hero--info h2,
+.hero--info h1,
+.hero--info p {
+    font-size: clamp(1.1rem, 5vw, 1.6rem);  /* ← уменьши vw до 4–5vw или вообще убери vw */
+    /* или жёстче: */
+    /* font-size: clamp(1.1rem, min(5vw, 1.4rem), 1.5rem); */
+}
+
+@media (max-width: 767px) {
+    .hero--info h2,
+    .hero--info h1,
+    .hero--info p {
+        font-size: clamp(1rem, 4.5vw, 1.4rem);  /* max поменьше */
+        line-height: 1.7;
+        padding: 0 1.2rem;  /* больше воздуха */
+    }
+}
 
 
