@@ -13,7 +13,7 @@
  body {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
-    color: azure;
+    color: #fff;
  }
 
  a {
@@ -21,8 +21,10 @@
  }
 
  img {
-    max-width: 120%;
- }
+    max-width: 100%;          /* НЕ 120% !!! */
+    height: auto;
+    display: block;
+}
 
  .wrapper {
     background:linear-gradient(90deg,rgba(10, 11, 13, 1) 8%, rgba(5, 3, 41, 1) 78%);
@@ -31,38 +33,39 @@
  }
 
  .container {
-    width: 1300px;
+    width: min(100% - 2rem, 1300px);   /* раньше было 1300px */
     margin: 0 auto;
- }
+    padding: 0 1rem;                   /* добавь внутренние отступы */
+}
 
  header {
-    padding: 50px 0;
- }
-
- header .logo {
-    text-transform: uppercase;
-    font-size:40px;
-    font-weight: 800;
- }
-
- header nav {
-    float: right;
-    width: 40%;
- }
-
- header nav ul {
-    list-style: none;
+    padding: 2rem 0;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
- }
+    align-items: center;
+    gap: 1.5rem;
+}
 
- header nav ul li {
-    display: inline-block;
-    font-size: 23px;
-    margin-right: 12px;
-    font-weight: 800;
+header .logo {
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+}
 
- }
+header nav {
+    width: auto;              /* убираем 40% */
+}
+
+header nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: flex-end;
+    list-style: none;
+}
+
+header nav ul li {
+    font-size: clamp(1rem, 3vw, 1.4rem);
+}
 
  header nav ul li a {
     color: beige;
